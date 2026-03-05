@@ -5,3 +5,21 @@
 [x-cloak] {
     display: none;
 }
+
+
+/* Quill alignment – musí přebít tailwind typography */
+.prose .ql-align-center {
+  text-align: center !important;
+}
+
+.prose .ql-align-right {
+  text-align: right !important;
+}
+
+.prose .ql-align-left {
+  text-align: left !important;
+}
+
+.prose .ql-align-justify {
+  text-align: justify !important;
+}

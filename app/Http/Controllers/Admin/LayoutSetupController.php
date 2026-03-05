@@ -9,6 +9,7 @@ use App\Models\LayoutSetup;
 use App\Models\PageDesign;
 use App\Models\Page;
 use App\Models\Subpage;
+use App\Models\MainDesign;
 
 class LayoutSetupController extends Controller
 {
@@ -18,12 +19,14 @@ class LayoutSetupController extends Controller
         $pageDesign = PageDesign::all();
         $pages = Page::where('active', 1)->get();
         $subpages = Subpage::all();
+        $mainDesign = MainDesign::first();
 
         return Inertia::render('Admin/LayoutSetup/Index', [
             'layouts' => $layouts,
             'pageDesign' => $pageDesign,
             'pages' => $pages,
             'subpages' => $subpages,
+            'mainDesign' => $mainDesign,
         ]);
     }
 

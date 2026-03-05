@@ -1,5 +1,7 @@
 import './bootstrap';
 import '../css/app.css';
+import 'primeicons/primeicons.css';
+import 'quill/dist/quill.snow.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
@@ -30,13 +32,16 @@ import ConfirmationService from 'primevue/confirmationservice';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import ConfirmDialog from 'primevue/confirmdialog';
-
+import Editor from 'primevue/editor';
+import Carousel from 'primevue/carousel';
+import Image from 'primevue/image';
 import Tabs from 'primevue/tabs';
 import TabList from 'primevue/tablist';
 import Tab from 'primevue/tab';
 import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
 import Card from 'primevue/card';
+import Galleria from 'primevue/galleria';
 
 import Stepper from 'primevue/stepper';
 import StepList from 'primevue/steplist';
@@ -45,10 +50,17 @@ import StepItem from 'primevue/stepitem';
 import Step from 'primevue/step';
 import StepPanel from 'primevue/steppanel';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Precious';
+
 
 createInertiaApp({
-    title: () => `${appName}`,
+     title: (title) => {
+        const t = String(title ?? '').trim();
+
+        if (t) {
+            return t;
+        }
+        return 'Precious - Administrace pro Váš web';
+    },
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         const app = createApp({ render: () => h(App, props) });
@@ -75,9 +87,9 @@ createInertiaApp({
         app.component('SelectButton', SelectButton);
         app.component('Dialog', Dialog);
         app.component('InputNumber', InputNumber);
-        app.component('InputNumber', InputNumber);
         app.component('ConfirmPopup', ConfirmPopup);
         app.component('ConfirmDialog', ConfirmDialog);
+        app.component('Editor', Editor);
         app.component('Toast', Toast);
         app.component('Tabs', Tabs);
         app.component('TabList', TabList)
@@ -85,13 +97,15 @@ createInertiaApp({
         app.component('TabPanel', TabPanel);
         app.component('TabPanels', TabPanels);
         app.component('Card', Card);
-
+        app.component('Carousel', Carousel);
+        app.component('Image', Image);
         app.component('Stepper', Stepper);
         app.component('StepList', StepList);
         app.component('StepPanels', StepPanels);
         app.component('StepItem', StepItem);
         app.component('Step', Step);
         app.component('StepPanel', StepPanel);
+        app.component('Galleria', Galleria);
 
         app.directive('tooltip', Tooltip);
         app.use(plugin)
